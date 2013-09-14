@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pilon">
+<head>
+  <meta charset="utf-8">
+  <title>Pilon Hotspot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="You are connected to a Wifi Hotspot powered by Pilon.">
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/theme.css">
+  <script type="text/javascript">
+  document.createElement("header");
+  document.createElement("article");
+  document.createElement("footer");
+  </script>
+  <script src="js/angular.min.js"></script>
+  <script type="text/javascript">
+  'use strict';
+
+  angular.module('pilon', [])
+  .config(function($compileProvider){
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|bitcoin):/);
+  })
+  .controller('CtrlMain', function($scope,$http) {
+    $scope.checkCount=0;
+    $scope.status='new';
+    $scope.info=[];
+    $scope.info.ready=false;
+    $scope.info.btcaddr='Loading payment address';
+    $http.get('info.php').success(function(d){
+      if(d){
+        angular.forEach(d, function(v,k) {$scope.info[k]=v;});
+      }
+      $scope.check();
+    });
+    $scope.check = function() {
+      if(!$scope.info.ready) return;
+      if($scope.checkCount) $scope.status='busy';
+      $scope.checking=true;
+      $http.get('check.php?a='+$scope.info.btcaddr)
+      .success(function(d){
+        $scope.checking=false;
+        if(isNaN(d)){
+          $scope.err=d;
+          $scope.status='err';
+        }
+        else{
+          $scope.relayed=d;
+          if(d>60){
+            $scope.status='paid';
+          }
+          else if(d>0){
+            $scope.status='almost';
+          }
+          else if($scope.checkCount){
+            $scope.status='nope';
+          }
+        }
+        $scope.checkCount++;
+      })
+    }
+  })
+
+  </script>
+</head>
+<body ng-controller="CtrlMain">
+  <header id="home">
+    <div class="container">
+      <span class="label"></span>
+      <span class="label">Relayed: {{relayed}}% &nbsp; Status:{{status}}</span>
+      <span class="label" ng-show="checking">Refreshing...</span>
+      <h1>
+        <a href="#home">Pilon <small>Hotspot</small></a>
+      </h1>
+    </div>
+  </header>
+  <div class="container">
+    <article id="access" class="status-{{status}}">
+      <header>
+        <span class="label">
+          <small>IP</small>
+          <span ng-show="info.ip">{{info.ip}}</span>
+        </span>
+        <div ng-switch on="status">
+          <div ng-switch-when="ban">Access denied</div>
+          <div ng-switch-when="err">Error: {{err}}</div>
+          <div ng-switch-when="busy">Checking&nbsp;payment</div>
+          <div ng-switch-when="nope">No payment spotted</div>
+          <div ng-switch-when="almost">Almost confirmed: {{relayed}}&nbsp;%</div>
+          <div ng-switch-when="paid">Access granted</div>
+          <div ng-switch-default>Welcome!</div>
+        </div>
+      </header>
+    </article>
+    <article id="pay" ng-show="!paid">
+      <header>
+        <h1>1 hour for 0.001 BTC</h1>
+      </header>
+      <section>
+        <p>
+          There are several ways to make the payment. Supported wallet apps, programs &amp; webservices:
+        </p>
+        <ul>
+          <li><a ng-href="bitcoin:{{info.btcaddr}}?amount=0.01">Pay with Bitcoin wallet</a></li>
+          <li><a href="http://coinbase.com">Pay with <b>Coinbase</b></a></li>
+          <li><a href="http://blockchain.info">Pay with <b>blockchain.info</b></a></li>
+        </ul>
+      </section>
+    </article>
+    <article id="check" ng-show="!paid">
+      <header>
+        <button href ng-click="check()" ng-disabled="status=='paid'||status=='ban'||status=='busy'" class="btn">Check payment</button>
+        <h1>Check payment</h1>
+      </header>
+      <section>
+        <p>
+          <span class="ellipsis">{{info.btcaddr}}</span>
+          <p>
+          </p>
+        </p>
+      </section>
+    </article>
+    <article id="info">
+      <header>
+        <h1>What is bitcoin?</h1>
+      </header>
+      <section>
+        <p>
+          Good question, find all about it on <a href="http://bitcoin.org">bitcoin.org</a>
+        </p>
+      </section>
+    </article>
+  </div>
+</body>
+</html>

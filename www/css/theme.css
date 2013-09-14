@@ -1,0 +1,75 @@
+/* Eric Meyer's Reset CSS v2.0 */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;outline:0;font-size:100%;vertical-align:baseline;margin:0;padding:0;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}ins{text-decoration:none;}del{text-decoration:line-through;}table{border-collapse:collapse;border-spacing:0;}
+
+/* Structure */
+body{font-family:"Open Sans",Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;background:#333;transition:background 1s;color:#fff; }
+.container{margin:0 auto}
+
+/* Typography */
+h2{font-size:1.2em;text-transform:uppercase;margin:.3em 0;padding:.2em 0;display:inline-block;border-bottom:3px solid rgba(0,0,0,.2);}
+p,ul{line-height:1.6em;}
+section p,ul{margin-bottom:1em}
+a{text-decoration:none;color:#fff}
+section a{text-decoration:underline;}
+section a:hover,section a:focus{text-decoration:none;}
+img{float:right}
+
+/* Top header */
+#home h1{font-weight:600;opacity:.8}
+#home h1 a{color:#fff;font-size:2em;padding:1em .5em .5em;display: block}
+#home h1 a:hover,#home h1 a:focus{color:#fff;text-decoration:underline}
+h1 small{font-size:.8em;font-weight:300}
+
+/* Articles */
+article{color:#fff;background:#555;margin-top:1em;margin-bottom:1em}
+article header{font-size:1.4em;padding:1em .7142em;}
+article section{margin:0 1em;padding-bottom:1px}
+article > a:hover,article > a:focus{text-decoration:underline;}
+
+/* Footer links */
+footer{opacity:.6;}
+footer:hover{opacity:1}
+footer a{display:inline-block;padding:.5em 1em;border-bottom:3px solid rgba(0,0,0,.4);}
+footer a:hover,article footer a:focus{border-color:#fff;}
+
+/* Access */
+article.status-new{background:#0A6C75;}
+article.status-ban{background:#A52A1F;}
+article.status-busy{background:#d35400;}
+article.status-nope{background:#d35400;}
+article.status-almost{background:#0D7C0B;}
+article.status-paid{background:#0D7C0B;}
+
+/* Contact form */
+label{display:block;}
+input,textarea{padding:.3em 1%;width:98%;margin-left:-5px;font-size:1em;line-height:1.2em;
+  border-radius:3px;border:5px solid #777;display:inline-block;}
+input:focus,textarea:focus{border-color:#000;}
+button{background:#0A6C75;color:#fff;font-size:1em;padding:.5em 1em;border:0 none;border-radius:.5em;cursor:pointer;}
+.btn{float:right;}
+.btn:disabled{background: none;opacity: .6}
+
+/* Index / Shorten wide values in tables and show them on hover */
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80px;
+}
+
+/* Label */
+.label{opacity:.6;font-size:.8em;float:right;line-height:1.25em;}
+.label small{font-size:.7em;opacity:.6;}
+
+@media (min-width:26em) {
+  .container{max-width:40em}
+}
+@media (min-width:50em) {
+  body{font-size:1.1em;}
+  .container{max-width:45em}
+}
+@media (min-width:80em) {
+  body{font-size:1.2em;}
+  .container{max-width:50em}
+}
