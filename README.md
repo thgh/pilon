@@ -45,14 +45,14 @@ Password: ```raspberry```
 Get the files from github, clone them into /home/pi
 
 ```
-git clone https://github.com/thgh/pilon.git /home/pi
+git clone https://github.com/thgh/pilon.git /home/pi/lon
 ```
 
 Make these folders available to the webserver
 
 ```
-chmod -R 774 /home/pi/etc/*
-chgrp -R www-data /home/pi/etc /home/pi/www
+sudo chmod -R 774 /home/pi/lon/etc/*
+sudo chgrp -R www-data /home/pi/lon/etc /home/pi/lon/www
 ```
 
 ### Install webserver
@@ -60,6 +60,7 @@ chgrp -R www-data /home/pi/etc /home/pi/www
 Install php and nginx which will serve the captive portal
 
 ```
+sudo apt-get update
 sudo apt-get install php5-fpm php5-gmp nginx
 ```
 
