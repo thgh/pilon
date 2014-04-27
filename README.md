@@ -92,10 +92,8 @@ server {
   listen 80;
   server_name localhost;
 
-  root /home/pi/www;
+  root /home/pi/lon/www;
   index index.html;
-
-  error_log /home/pi/log/nginx80-error.log;
 
   location / {
     try_files $uri $uri/ /redirect.php;
@@ -104,7 +102,7 @@ server {
   location ~ \.php$ {
     fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_index /redirect.php;
-    fastcgi_param PHP_VALUE "include_path=/home/pi/etc";
+    fastcgi_param PHP_VALUE "include_path=/home/pi/lon/etc";
     include fastcgi_params;
   }
 }
