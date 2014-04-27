@@ -17,17 +17,17 @@ If you would like to build it from scratch, start from Raspbian.
 
 ## Setup from image
 
-Download image from ...
+Download image from
+https://www.dropbox.com/s/c731j2x433pqq1r/pilon.7z
 
-Put it on SD.
+Login: ```pi```
 
-Plug in SD, dongle & ethernet.
+Password: ```pilon```
 
-Plug in power.
+This image is not perfect:
 
-Use a computer/phone to connect to the "Pilon Hotspot". It can take upto 30 seconds before it shows up.
-
-Follow instructions.
+1. Without thinking too much, I expanded the partition size to 8Gb.
+2. The iptables config is not included.
 
 ## Setup from scratch
 
