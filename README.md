@@ -69,8 +69,8 @@ Edit some settings
 ```
 sudo sed -i 's/worker_processes 4/worker_processes 1/g' /etc/nginx/nginx.conf
 sudo sed -i 's/application\/octet-stream/text\/html/g' /etc/nginx/nginx.conf
-sudo sed -i 's/var\/log\/nginx\/access.log/home\/pi\/log\/nginx-access.log/g' /etc/nginx/nginx.conf
-sudo sed -i 's/var\/log\/nginx\/error.log/home\/pi\/log\/nginx-error.log/g' /etc/nginx/nginx.conf
+sudo sed -i 's/var\/log\/nginx\/access.log/home\/pi\/\/lon\/log\/nginx-access.log/g' /etc/nginx/nginx.conf
+sudo sed -i 's/var\/log\/nginx\/error.log/home\/pi\/\/lon\/log\/nginx-error.log/g' /etc/nginx/nginx.conf
 ```
 
 Set up a new server
