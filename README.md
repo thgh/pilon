@@ -2,9 +2,9 @@
 
 Pilon, easy wifi hotspot for Raspberry Pi, pay with bitcoin.
 
-> This is an proof-of-concept full of security holes.
-> Pull requests are welcome, I will merge them.
-> Let me know if you're interested in getting this to work properly.
+> This is a **proof-of-concept** full of security holes.  
+> Pull requests are welcome, I will merge them.  
+> Let me know if you're interested in getting this to work properly: info@thomasg.be
 
 ### Required
 
