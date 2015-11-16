@@ -107,7 +107,7 @@ server {
     fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_index /redirect.php;
     fastcgi_param PHP_VALUE "include_path=/home/pi/lon/etc";
-    include fastcgi_params;
+    include fastcgi.conf;
   }
 }
 ```
